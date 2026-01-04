@@ -1,0 +1,86 @@
+:root{
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #3f51b5;      /* Material Indigo 500 */
+  --accent-600: #3949ab;
+  --op: #ff7043;          /* operation accent */
+  --glass: rgba(255,255,255,0.7);
+  --shadow: 0 8px 20px rgba(60,64,67,0.12);
+  --radius: 14px;
+  --btn-radius: 12px;
+  --text: #0f1724;
+}
+
+*{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+html,body,#app{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#eef2ff);color:var(--text);}
+
+.topbar{
+  height:64px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 18px; gap:12px;
+}
+.title{font-weight:600;font-size:18px; color:var(--accent-600);}
+
+.icon-btn{
+  background:transparent;border:0;padding:8px;border-radius:10px;cursor:pointer;font-size:18px;
+}
+.icon-btn:hover{background:rgba(0,0,0,0.04);}
+
+.shell{display:flex; gap:18px; padding:18px; max-width:980px; margin:18px auto; align-items:flex-start;}
+.history{width:260px;background:var(--card); border-radius:12px;padding:12px; box-shadow:var(--shadow); transform:translateX(10px); transition:transform 260ms cubic-bezier(.2,.9,.25,1); opacity:1;}
+.history.hidden{transform:translateX(110%); opacity:0; pointer-events:none;}
+.history-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;}
+.history-list{list-style:none; padding:0; margin:0; max-height:520px; overflow:auto;}
+.history-list li{padding:8px 6px; border-radius:8px; margin-bottom:6px; background:linear-gradient(180deg, rgba(63,81,181,0.04), rgba(63,81,181,0.02)); font-size:13px; color:#243046;}
+
+.calculator{flex:1; max-width:560px; background:linear-gradient(180deg,var(--card), #fbfdff); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); position:relative; overflow:hidden;}
+
+/* breathing background */
+.calculator::before{
+  content:""; position:absolute; inset:-50%; background:radial-gradient(circle at 10% 10%, rgba(63,81,181,0.06), transparent 10%),
+  radial-gradient(circle at 90% 90%, rgba(63,81,181,0.03), transparent 10%); mix-blend-mode:screen; animation: breathe 6s ease-in-out infinite;
+  pointer-events:none; z-index:0;
+}
+@keyframes breathe { 0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)} }
+
+/* display */
+.display{position:relative; z-index:2; padding:18px; min-height:110px; display:flex; flex-direction:column; align-items:flex-end; justify-content:center;}
+.expr{color:var(--muted); font-size:14px; min-height:20px; opacity:0.9; transition:all 200ms ease;}
+.value{font-size:44px; font-weight:700; margin-top:6px; transition:transform 200ms ease, opacity 200ms ease;}
+
+/* keypad */
+.keypad{padding:14px 6px 8px 6px; z-index:2;}
+.row{display:flex; gap:10px; margin-bottom:10px;}
+.extra-row{display:flex; gap:10px; margin-top:10px; justify-content:center;}
+
+/* generic buttons */
+.btn{
+  flex:1; min-height:56px; border-radius:var(--btn-radius); border:0; background:linear-gradient(180deg, #fff, #f6f8ff); box-shadow:0 6px 18px rgba(15,23,36,0.06);
+  font-size:18px; cursor:pointer; position:relative; overflow:hidden; transition:transform 140ms ease, box-shadow 140ms ease;
+}
+.btn:active{transform:translateY(2px) scale(0.99);}
+.btn:hover{transform:translateY(-3px); box-shadow:0 12px 26px rgba(15,23,36,0.08);}
+.btn.wide{flex:2;}
+.btn.soft{background:linear-gradient(180deg,#fbfbff,#f0f4ff); color:var(--muted);}
+.btn.op{background:linear-gradient(180deg,var(--accent),var(--accent-600)); color:white; font-weight:600;}
+.btn.equals{background:linear-gradient(180deg,var(--op), #ff5722); color:white; font-weight:700;}
+
+/* ghost small */
+.btn.ghost{background:transparent; border:1px solid rgba(15,23,36,0.04); box-shadow:none;}
+
+/* ripple effect */
+.btn .ripple {
+  position:absolute; border-radius:50%; transform:scale(0); background:rgba(255,255,255,0.6);
+  animation:ripple 600ms linear; pointer-events:none; mix-blend-mode:screen;
+}
+@keyframes ripple{ to{ transform:scale(6); opacity:0; } }
+
+/* footer */
+.footer{text-align:center; font-size:12px; color:var(--muted); margin:18px 0 36px;}
+
+/* responsive */
+@media (max-width:880px){
+  .shell{flex-direction:column; padding:10px;}
+  .history{width:100%; order:3;}
+  .calculator{width:100%;}
+}

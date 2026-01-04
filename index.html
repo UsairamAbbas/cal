@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ProdCalc — Material</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="title">ProdCalc</div>
+      <div class="controls">
+        <button id="themeToggle" class="icon-btn" title="Toggle theme">🌙</button>
+        <button id="voiceBtn" class="icon-btn" title="Voice input">🎤</button>
+        <button id="historyToggle" class="icon-btn" title="History">📜</button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <aside id="historyPanel" class="history">
+        <div class="history-header">
+          <strong>History</strong>
+          <button id="clearHistory" class="link-btn">Clear</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+      </aside>
+
+      <section class="calculator">
+        <div class="display">
+          <div id="expr" class="expr"> </div>
+          <div id="value" class="value">0</div>
+        </div>
+
+        <div class="keypad">
+          <div class="row">
+            <button class="btn soft" data-cmd="AC">AC</button>
+            <button class="btn soft" data-cmd="±">±</button>
+            <button class="btn soft" data-cmd="%">%</button>
+            <button class="btn op" data-cmd="/">÷</button>
+          </div>
+          <div class="row">
+            <button class="btn" data-cmd="7">7</button>
+            <button class="btn" data-cmd="8">8</button>
+            <button class="btn" data-cmd="9">9</button>
+            <button class="btn op" data-cmd="*">×</button>
+          </div>
+          <div class="row">
+            <button class="btn" data-cmd="4">4</button>
+            <button class="btn" data-cmd="5">5</button>
+            <button class="btn" data-cmd="6">6</button>
+            <button class="btn op" data-cmd="-">−</button>
+          </div>
+          <div class="row">
+            <button class="btn" data-cmd="1">1</button>
+            <button class="btn" data-cmd="2">2</button>
+            <button class="btn" data-cmd="3">3</button>
+            <button class="btn op" data-cmd="+">+</button>
+          </div>
+          <div class="row">
+            <button class="btn wide" data-cmd="0">0</button>
+            <button class="btn" data-cmd=".">.</button>
+            <button class="btn equals" data-cmd="=">=</button>
+          </div>
+          <div class="extra-row">
+            <button class="btn ghost" data-cmd="(">(</button>
+            <button class="btn ghost" data-cmd=")">)</button>
+            <button class="btn ghost" data-cmd="^">^</button>
+            <button class="btn ghost" data-cmd="sqrt">√</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">Material-style ProdCalc — keyboard supported — Press Enter =</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
